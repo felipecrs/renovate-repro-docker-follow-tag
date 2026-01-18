@@ -1,1 +1,1 @@
-FROM ghcr.io/felipecrs/devcontainer:sha-6c30970
+FROM ghcr.io/felipecrs/devcontainer:sha-ee426c9
