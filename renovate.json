@@ -2,11 +2,25 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended"],
   "dependencyDashboard": true,
+  "enabledManagers": ["custom.regex"],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^Dockerfile$/"],
+      "matchStrings": [
+        "FROM ghcr.io/felipecrs/devcontainer:sha-(?<currentValue>.+)\\n"
+      ],
+      "datasourceTemplate": "docker",
+      "packageNameTemplate": "ghcr.io/felipecrs/devcontainer",
+      "depNameTemplate": "felipecrs/devcontainer",
+      "extractVersionTemplate": "^sha-(?<version>.+)$",
+      "versioningTemplate": "git"
+    }
+  ],
   "packageRules": [
     {
       "matchPackageNames": ["ghcr.io/felipecrs/devcontainer"],
-      "followTag": "2",
-      "versioning": "git"
+      "followTag": "2"
     }
   ]
 }
